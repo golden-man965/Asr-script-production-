@@ -1,69 +1,79 @@
---===[ KEY SYSTEM ]===--
-local validKey = "Asr_Production" -- ganti sesuai keinginan
+local validKey = "Asr_Production"
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 local RunService = game:GetService("RunService")
 
--- GUI Key
 local KeyGui = Instance.new("ScreenGui")
 KeyGui.Name = "KeySystem"
 KeyGui.Parent = PlayerGui
 KeyGui.ResetOnSpawn = false
 
 local KeyFrame = Instance.new("Frame")
-KeyFrame.Size = UDim2.new(0, 250, 0, 120)
-KeyFrame.Position = UDim2.new(0.5, -125, 0.5, -60)
-KeyFrame.BackgroundColor3 = Color3.new(0, 0, 0)
+KeyFrame.Size = UDim2.new(0, 320, 0, 180)
+KeyFrame.Position = UDim2.new(0.5, -160, 0.5, -90)
+KeyFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 KeyFrame.BorderSizePixel = 0
 KeyFrame.Parent = KeyGui
 
 local KeyTitle = Instance.new("TextLabel")
-KeyTitle.Size = UDim2.new(1, 0, 0, 30)
+KeyTitle.Size = UDim2.new(1, -20, 0, 28)
+KeyTitle.Position = UDim2.new(0, 10, 0, 8)
+KeyTitle.BackgroundTransparency = 1
 KeyTitle.Text = "Enter Key to Access ESP"
-KeyTitle.TextColor3 = Color3.new(1, 1, 1)
+KeyTitle.TextColor3 = Color3.fromRGB(255,255,255)
 KeyTitle.TextScaled = true
 KeyTitle.Font = Enum.Font.SourceSansBold
-KeyTitle.BackgroundTransparency = 1
 KeyTitle.Parent = KeyFrame
 
+local KeyWarning = Instance.new("TextLabel")
+KeyWarning.Size = UDim2.new(1, -20, 0, 56)
+KeyWarning.Position = UDim2.new(0, 10, 0, 40)
+KeyWarning.BackgroundTransparency = 1
+KeyWarning.Text = "Kadang terjadi kesalahan sistem. Jika terjadi kesalahan sistem, mohon laporkan ke tim developer."
+KeyWarning.TextWrapped = true
+KeyWarning.TextXAlignment = Enum.TextXAlignment.Left
+KeyWarning.TextYAlignment = Enum.TextYAlignment.Top
+KeyWarning.Font = Enum.Font.SourceSans
+KeyWarning.TextSize = 14
+KeyWarning.TextColor3 = Color3.fromRGB(255, 200, 80)
+KeyWarning.Parent = KeyFrame
+
 local KeyBox = Instance.new("TextBox")
-KeyBox.Size = UDim2.new(1, -20, 0, 30)
-KeyBox.Position = UDim2.new(0, 10, 0, 40)
+KeyBox.Size = UDim2.new(1, -20, 0, 34)
+KeyBox.Position = UDim2.new(0, 10, 0, 100)
 KeyBox.PlaceholderText = "Enter Key..."
 KeyBox.Text = ""
-KeyBox.TextColor3 = Color3.new(1, 1, 1)
-KeyBox.BackgroundColor3 = Color3.new(0.15, 0.15, 0.15)
+KeyBox.TextColor3 = Color3.fromRGB(255,255,255)
+KeyBox.BackgroundColor3 = Color3.fromRGB(35,35,35)
 KeyBox.Font = Enum.Font.SourceSans
 KeyBox.TextScaled = true
+KeyBox.ClearTextOnFocus = false
 KeyBox.Parent = KeyFrame
 
 local Submit = Instance.new("TextButton")
-Submit.Size = UDim2.new(1, -20, 0, 30)
-Submit.Position = UDim2.new(0, 10, 0, 80)
-Submit.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
-Submit.TextColor3 = Color3.new(1, 1, 1)
+Submit.Size = UDim2.new(1, -20, 0, 36)
+Submit.Position = UDim2.new(0, 10, 0, 140)
+Submit.BackgroundColor3 = Color3.fromRGB(50,50,50)
+Submit.TextColor3 = Color3.fromRGB(255,255,255)
 Submit.Text = "Submit"
 Submit.Font = Enum.Font.SourceSansBold
 Submit.TextScaled = true
 Submit.Parent = KeyFrame
 
--- kata tidak senonoh sederhana (filter manual)
-local badWords = {"anj", "tolol", "goblok", "memek", "kontol"}
-
+local badWords = {"ah ah ah","sayang","ayang","kiss","muach","peluk","hub","love u","ml"}
 Submit.MouseButton1Click:Connect(function()
     if KeyBox.Text == validKey then
         KeyGui:Destroy()
 
-        -- GUI Utama
         local ScreenGui = Instance.new("ScreenGui")
         ScreenGui.Name = "ESP_GUI"
         ScreenGui.ResetOnSpawn = false
         ScreenGui.Parent = PlayerGui
 
         local Frame = Instance.new("Frame")
-        Frame.Size = UDim2.new(0, 200, 0, 160)
+        Frame.Size = UDim2.new(0, 200, 0, 185)
         Frame.Position = UDim2.new(0, 20, 0, 100)
         Frame.BackgroundColor3 = Color3.new(0, 0, 0)
         Frame.BorderSizePixel = 0
@@ -71,7 +81,6 @@ Submit.MouseButton1Click:Connect(function()
         Frame.Draggable = true
         Frame.Parent = ScreenGui
 
-        -- Judul
         local Title = Instance.new("TextLabel")
         Title.Size = UDim2.new(1, 0, 0, 30)
         Title.Text = "AFZ ESP"
@@ -81,7 +90,6 @@ Submit.MouseButton1Click:Connect(function()
         Title.BackgroundTransparency = 1
         Title.Parent = Frame
 
-        -- Toggle AFZ
         local ToggleAFZ = Instance.new("TextButton")
         ToggleAFZ.Size = UDim2.new(1, -10, 0, 30)
         ToggleAFZ.Position = UDim2.new(0, 5, 0, 35)
@@ -92,7 +100,6 @@ Submit.MouseButton1Click:Connect(function()
         ToggleAFZ.TextScaled = true
         ToggleAFZ.Parent = Frame
 
-        -- Toggle Sus
         local ToggleSus = Instance.new("TextButton")
         ToggleSus.Size = UDim2.new(1, -10, 0, 30)
         ToggleSus.Position = UDim2.new(0, 5, 0, 70)
@@ -103,7 +110,6 @@ Submit.MouseButton1Click:Connect(function()
         ToggleSus.TextScaled = true
         ToggleSus.Parent = Frame
 
-        -- Credit
         local Credit = Instance.new("TextLabel")
         Credit.Size = UDim2.new(1, -10, 0, 20)
         Credit.Position = UDim2.new(0, 5, 0, 110)
@@ -116,8 +122,8 @@ Submit.MouseButton1Click:Connect(function()
         Credit.Parent = Frame
 
         local Support = Instance.new("TextLabel")
-        Support.Size = UDim2.new(1, -10, 0, 20)
-        Support.Position = UDim2.new(0, 5, 0, 135)
+        Support.Size = UDim2.new(1, -10, 0, 18)
+        Support.Position = UDim2.new(0, 5, 0, 132)
         Support.BackgroundTransparency = 1
         Support.Text = "Supported by ASR | Script Production"
         Support.TextColor3 = Color3.new(1, 1, 1)
@@ -126,14 +132,25 @@ Submit.MouseButton1Click:Connect(function()
         Support.TextXAlignment = Enum.TextXAlignment.Center
         Support.Parent = Frame
 
-        -- Animasi RGB untuk credit
+        local Warning = Instance.new("TextLabel")
+        Warning.Size = UDim2.new(1, -14, 0, 28)
+        Warning.Position = UDim2.new(0, 7, 0, 152)
+        Warning.BackgroundTransparency = 1
+        Warning.Text = "Kadang terjadi kesalahan sistem. Jika terjadi kesalahan sistem, mohon laporkan ke tim developer."
+        Warning.TextWrapped = true
+        Warning.TextXAlignment = Enum.TextXAlignment.Center
+        Warning.TextYAlignment = Enum.TextYAlignment.Center
+        Warning.Font = Enum.Font.SourceSans
+        Warning.TextSize = 14
+        Warning.TextColor3 = Color3.fromRGB(255, 200, 80)
+        Warning.Parent = Frame
+
         spawn(function()
             while task.wait(0.2) do
                 Credit.TextColor3 = Color3.fromHSV(tick() % 5 / 5, 1, 1)
             end
         end)
 
-        -- Variabel
         local afzEnabled = false
         local susEnabled = false
         local espObjects = {}
@@ -147,7 +164,6 @@ Submit.MouseButton1Click:Connect(function()
             end
         end
 
-        -- toggle
         ToggleAFZ.MouseButton1Click:Connect(function()
             afzEnabled = not afzEnabled
             ToggleAFZ.Text = afzEnabled and "AFZ ESP: ON" or "AFZ ESP: OFF"
@@ -159,7 +175,6 @@ Submit.MouseButton1Click:Connect(function()
             if not susEnabled then clearESP("sus") end
         end)
 
-        -- Chat detection
         local SusPlayers = {}
         local function listenChat(player)
             player.Chatted:Connect(function(msg)
@@ -182,9 +197,7 @@ Submit.MouseButton1Click:Connect(function()
             end
         end)
 
-        -- ESP Loop
         RunService.RenderStepped:Connect(function()
-            -- AFZ ESP
             if afzEnabled then
                 for _, player in pairs(Players:GetPlayers()) do
                     if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
@@ -219,7 +232,6 @@ Submit.MouseButton1Click:Connect(function()
                 end
             end
 
-            -- Sus ESP
             if susEnabled then
                 for player,_ in pairs(SusPlayers) do
                     if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
